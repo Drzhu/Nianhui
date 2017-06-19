@@ -1,0 +1,106 @@
+package com.guide.controller;
+
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.guide.service.NianHuiService;
+import com.guide.utils.GlobalConstants;
+
+@Controller
+@RequestMapping("/zhutong")
+public class ZhutongController {
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	SimpleDateFormat fmr = new SimpleDateFormat("MM-dd");
+	DecimalFormat df = new DecimalFormat();
+	// 处理业务逻辑的userService
+	@Resource(name = "nianHuiService")
+	private NianHuiService nianHuiService;
+
+	@RequestMapping(value = "init", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String init(HttpServletRequest request) {
+		GlobalConstants.init();
+		return "init success";
+	}
+	@RequestMapping(value = "clear", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String clear(HttpServletRequest request) {
+		GlobalConstants.clear();
+		return "clear success";
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	public String main(HttpServletRequest request) {
+		return "update";
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String edit(HttpServletRequest request) {
+		
+		HashMap<String, Integer> ml = new HashMap<String, Integer>();
+		HashMap<String, Integer> mn = new HashMap<String, Integer>();
+		HashMap<String, Integer> wn = new HashMap<String, Integer>();
+		HashMap<String, Integer> wl = new HashMap<String, Integer>();
+		HashMap<String, Integer> wish = new HashMap<String, Integer>();
+
+		ml.put("年度大会", Integer.parseInt(request.getParameter("ml").split(",")[0]));
+		ml.put("员工奉献奖",  Integer.parseInt(request.getParameter("ml").split(",")[1]));
+		ml.put("微电影走秀",  Integer.parseInt(request.getParameter("ml").split(",")[2]));
+		ml.put("微电影播映", Integer.parseInt(request.getParameter("ml").split(",")[3]));
+		ml.put("微电影颁奖",  Integer.parseInt(request.getParameter("ml").split(",")[4]));
+		ml.put("晚宴走秀",  Integer.parseInt(request.getParameter("ml").split(",")[5]));
+		ml.put("晚宴节目表演",  Integer.parseInt(request.getParameter("ml").split(",")[6]));
+		ml.put("晚宴抽奖", Integer.parseInt(request.getParameter("ml").split(",")[7]));
+
+		mn.put("年度大会", Integer.parseInt(request.getParameter("mn").split(",")[0]));
+		mn.put("员工奉献奖",  Integer.parseInt(request.getParameter("mn").split(",")[1]));
+		mn.put("微电影走秀",  Integer.parseInt(request.getParameter("mn").split(",")[2]));
+		mn.put("微电影播映", Integer.parseInt(request.getParameter("mn").split(",")[3]));
+		mn.put("微电影颁奖",  Integer.parseInt(request.getParameter("mn").split(",")[4]));
+		mn.put("晚宴走秀",  Integer.parseInt(request.getParameter("mn").split(",")[5]));
+		mn.put("晚宴节目表演",  Integer.parseInt(request.getParameter("mn").split(",")[6]));
+		mn.put("晚宴抽奖", Integer.parseInt(request.getParameter("mn").split(",")[7]));
+
+		wl.put("年度大会", Integer.parseInt(request.getParameter("wl").split(",")[0]));
+		wl.put("员工奉献奖",  Integer.parseInt(request.getParameter("wl").split(",")[1]));
+		wl.put("微电影走秀",  Integer.parseInt(request.getParameter("wl").split(",")[2]));
+		wl.put("微电影播映", Integer.parseInt(request.getParameter("wl").split(",")[3]));
+		wl.put("微电影颁奖",  Integer.parseInt(request.getParameter("wl").split(",")[4]));
+		wl.put("晚宴走秀",  Integer.parseInt(request.getParameter("wl").split(",")[5]));
+		wl.put("晚宴节目表演",  Integer.parseInt(request.getParameter("wl").split(",")[6]));
+		wl.put("晚宴抽奖", Integer.parseInt(request.getParameter("wl").split(",")[7]));
+
+		wn.put("年度大会", Integer.parseInt(request.getParameter("wn").split(",")[0]));
+		wn.put("员工奉献奖",  Integer.parseInt(request.getParameter("wn").split(",")[1]));
+		wn.put("微电影走秀",  Integer.parseInt(request.getParameter("wn").split(",")[2]));
+		wn.put("微电影播映", Integer.parseInt(request.getParameter("wn").split(",")[3]));
+		wn.put("微电影颁奖",  Integer.parseInt(request.getParameter("wn").split(",")[4]));
+		wn.put("晚宴走秀",  Integer.parseInt(request.getParameter("wn").split(",")[5]));
+		wn.put("晚宴节目表演",  Integer.parseInt(request.getParameter("wn").split(",")[6]));
+		wn.put("晚宴抽奖", Integer.parseInt(request.getParameter("wn").split(",")[7]));
+
+		wish.put("有钱暴富",Integer.parseInt(request.getParameter("wish").split(",")[0]));
+		wish.put("遇见那个ta", Integer.parseInt(request.getParameter("wish").split(",")[1]));
+		wish.put("健身减肥", Integer.parseInt(request.getParameter("wish").split(",")[2]));
+		wish.put("更美更帅", Integer.parseInt(request.getParameter("wish").split(",")[3]));
+		wish.put("升职加薪", Integer.parseInt(request.getParameter("wish").split(",")[4]));
+		wish.put("要宝宝", Integer.parseInt(request.getParameter("wish").split(",")[5]));
+		wish.put("世界和平", Integer.parseInt(request.getParameter("wish").split(",")[6]));
+		wish.put("嘿嘿嘿", Integer.parseInt(request.getParameter("wish").split(",")[7]));
+
+		GlobalConstants.setALL(ml, mn, wl, wn, wish);
+		
+		return "edit";
+	}
+
+}

@@ -1,0 +1,106 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%--引入JSTL核心标签库 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
+<html style="height:100%;">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<link rel="stylesheet" type="text/css" href="css/css.css" />
+<title>麦迪卫康2017年会</title>
+</head>
+<body style="background:url(img/background.jpg) no-repeat 55% 0 fixed; background-size:cover;">
+	<div class="personnel-info">
+		<div class="answer">
+			<h3>1，您的性别？</h3>
+			<label><input type="radio" name="answer1" value="male">男</label>
+			<label><input type="radio" name="answer1" value="female">女</label>
+		</div>
+		<div class="answer-sel">
+			<h3>2，2017年年会您最期待的环节是？</h3>
+			<label><input type="checkbox" name="expect" value="nddy1"/>年度大会</label>
+			<label><input type="checkbox" name="expect" value="ygfxj1"/>员工奉献奖</label>
+			<label><input type="checkbox" name="expect" value="wdyzx1"/>微电影走秀</label>
+			<label><input type="checkbox" name="expect" value="wdyby1"/>微电影播映</label>
+			<label><input type="checkbox" name="expect" value="wdybj1"/>微电影颁奖</label>
+			<label><input type="checkbox" name="expect" value="wyzx1"/>晚宴走秀</label>
+			<label><input type="checkbox" name="expect" value="wyjmby1"/>晚宴节目表演</label>
+			<label><input type="checkbox" name="expect" value="wycj1"/>晚宴抽奖</label>
+		</div>
+		<div class="answer-sel">
+			<h3>3，2016年年会您最喜欢的环节是？</h3>
+			<label><input type="checkbox" name="like" value="nddy2"/>年度大会</label>
+			<label><input type="checkbox" name="like" value="ygfxj2"/>员工奉献奖</label>
+			<label><input type="checkbox" name="like" value="wdyzx2"/>微电影走秀</label>
+			<label><input type="checkbox" name="like" value="wdyby2"/>微电影播映</label>
+			<label><input type="checkbox" name="like" value="wdybj2"/>微电影颁奖</label>
+			<label><input type="checkbox" name="like" value="wyzx2"/>晚宴走秀</label>
+			<label><input type="checkbox" name="like" value="wyjmby2"/>晚宴节目表演</label>
+			<label><input type="checkbox" name="like" value="wycj2"/>晚宴抽奖</label>
+		</div>
+		<div class="answer-sel">
+			<h3>4，2017年您最大的愿望是？</h3>
+			<label><input type="checkbox" name="wish" value="yqbf"/>有钱暴富</label>
+			<label><input type="checkbox" name="wish" value="yjngt"/>遇见那个ta</label>
+			<label><input type="checkbox" name="wish" value="jsjf"/>健身减肥</label>
+			<label><input type="checkbox" name="wish" value="gsgm"/>更美更帅</label>
+			<label><input type="checkbox" name="wish" value="szjx"/>升职加薪</label>
+			<label><input type="checkbox" name="wish" value="ybb"/>要宝宝</label>
+			<label><input type="checkbox" name="wish" value="sjhp"/>世界和平</label>
+			<label><input type="checkbox" name="wish" value="hhh"/>嘿嘿嘿</label>
+		</div>
+		<div class="answer">
+			<h3>5，您心目中的公司女神是？</h3>
+			<input type="text" name="goddess" value=""/>
+		</div>
+		<div class="answer">
+			<h3>6，约吗？老赵与您共进晚宴之后您的活动是？</h3>
+			<input type="text" name="activity" value=""/>
+		</div>
+		<div class="answer-pic">
+			<h3>7，您心目中的老司机是？</h3>
+				<label><input type="radio" name="laosiji" value="wangliang"/><img src="img/wangliang.jpg"/></label>
+				<label><input type="radio" name="laosiji" value="shiwei"/><img src="img/shiwei.jpg"/></label>
+				<label><input type="radio" name="laosiji" value="yangweimin"/><img src="img/yangweimin.jpg"/></label>
+				<label><input type="radio" name="laosiji" value="zhaoxiao"/><img src="img/zhaoxiao.jpg"/></label>
+				<label><input type="radio" name="laosiji" value="wayun"/><img src="img/mayun.jpg"/></label>
+				<label><input type="radio" name="laosiji" value="wangjl"/><img src="img/wangjl.jpg"/></label>
+		</div>
+			<button id = "sub" class="button">提交</button>
+	</div>
+	<script src="js/jquery-3.1.0.min.js"></script>
+	<script src="js/js.js"></script>
+	<script>
+		var expect="";
+		var like="";
+		var wish="";
+		function checkBoxes() {
+			$("input[name='expect']:checked").each(function(){ //2017年最期待
+				expect += $(this).val()+"," 
+			});
+			$("input[name='like']:checked").each(function(){ //2016年最喜欢
+				like += $(this).val()+"," 
+			});
+			$("input[name='wish']:checked").each(function(){ //2017年最大愿望
+				wish += $(this).val()+"," 
+			});
+		}
+		$("#sub").on("click",function(){
+			var gender = $("input[name='answer1']:checked").val();//性别
+			var goddess = $("input[name='goddess']").val();//女神
+			var activity = $("input[name='activity']").val();//活动
+			var laosiji = $("input[name='laosiji']:checked").val();//老司机
+			checkBoxes();
+			window.location.href = "validate?val="+gender+expect+like+wish+goddess+activity+laosiji;	
+			console.log(gender,expect,like,wish,goddess,activity,laosiji);
+		});
+	</script>
+</body>
+</html>
+
+

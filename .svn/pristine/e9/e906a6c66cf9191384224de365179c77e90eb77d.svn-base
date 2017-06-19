@@ -1,0 +1,142 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%--引入JSTL核心标签库 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<link rel="stylesheet" type="text/css" href="css/css.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
+<title>麦迪卫康2017年会</title>
+<style>
+.section { text-align: center; font: 40px "Microsoft Yahei"; color: #fff;}
+.section2 .chart2 { position: relative; left: -120%;}
+.section3 .chart3 { position: relative; bottom: -120%;}
+.section4 .chart4 { display: none;}
+.section5 .chart5 { position: relative; right: -120%;}
+.section6 p{position:absolute;}
+.section6 p img{border-radius:4px;}
+.section6 p.wangliang{left:-120%;}
+.section6 p.shiwei{right:-120%;}
+.section6 p.yangweimin{top:-120%;}
+.section6 p.zhaoxiao{bottom:-120%;}
+.section6 p.mayun{right:-120%;}
+.section6 p.wangjl{bottom:-120%;}
+</style>
+</head>
+<body >
+	<div id="dowebok">
+		<div class="section section1">
+			<h3>2017年最期待的环节是？</h3>
+			<div class="chart1">这里可以放个echart应该</div>
+		</div>
+		<div class="section section2">
+			<h3>2016年年会您最喜欢的环节是？</h3>
+			<div class="chart2">这里可以放个echart应该</div>
+		</div>
+		<div class="section section3">
+			<h3>2017年您最大的愿望是？</h3>
+			<div class="chart3">这里可以放个echart应该</div>
+		</div>
+		<div class="section section4">
+			<h3>您心目中的公司女神是？</h3>
+			<div class="chart4">这里可以放个echart应该</div>
+		</div>
+		<div class="section section5">
+			<h3>约吗？老赵与您共进晚宴之后您的活动是？</h3>
+			<div class="chart5">这里可以放个echart应该</div>
+		</div>
+		<div class="section section6">
+			<h3>老司机带带我！您心目中的老司机是？</h3>
+			<p class="wangliang"><img src="img/wangliang.jpg" alt="王亮"/></p>
+			<p class="shiwei"><img src="img/shiwei.jpg" alt="施炜"/></p>
+			<p class="yangweimin"><img src="img/yangweimin.jpg" alt="杨为民"/></p>
+			<p class="zhaoxiao"><img src="img/zhaoxiao.jpg" alt="赵啸"/></p>
+			<p class="mayun"><img src="img/mayun.jpg" alt="马云"/></p>
+			<p class="wangjl"><img src="img/wangjl.jpg" alt="王健林"/></p>
+		</div>
+	</div>
+
+	<script src="js/jquery-3.1.0.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/jquery.fullPage.min.js"></script>
+	<script>
+	$(function(){
+		$('#dowebok').fullpage({
+			sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#f90', '#4BBFC3', '#7BAABE'],
+			continuousVertical: true,//循环演示
+			navigation:true,//导航
+			
+		    afterLoad: function(anchorLink, index){
+				if(index == 2){
+					$('.section2').find('.chart2').delay(500).animate({
+						left: '0'
+					}, 1500, 'easeOutExpo');
+				}
+				if(index == 3){
+					$('.section3').find('.chart3').delay(500).animate({
+						bottom: '0'
+					}, 1500, 'easeOutExpo');
+				}
+				if(index == 4){
+					$('.section4').find('.chart4').fadeIn(2000);
+				}
+				if(index == 5){
+					$('.section5').find('.chart5').delay(500).animate({
+						right: '0'
+					}, 1500, 'easeOutExpo');
+				}
+				if(index == 6){
+					$('.section6').find('.wangliang').delay(500).animate({
+						top:'50%',
+						left: '30%'
+					}, 1500, 'easeOutExpo');
+					$('.section6').find('.shiwei').delay(600).animate({
+						top:'60%',
+						right: '30%'
+					}, 1500, 'easeOutExpo');
+					$('.section6').find('.yangweimin').delay(700).animate({
+						right: '0'
+					}, 1500, 'easeOutExpo');
+					$('.section6').find('.zhaoxiao').delay(500).animate({
+						bottom: '0'
+					}, 1500, 'easeOutExpo');
+					$('.section6').find('.mayun').delay(500).animate({
+						top: '0'
+					}, 1500, 'easeOutExpo');
+					$('.section6').find('.wangjl').delay(500).animate({
+						bottom: '0'
+					}, 1500, 'easeOutExpo');
+				}	
+			},
+			onLeave: function(index, direction){
+				if(index == '2'){
+					$('.section2').find('.chart2').delay(500).animate({
+						left: '-120%'
+					}, 1500, 'easeOutExpo');
+				}
+				if(index == '3'){
+					$('.section3').find('.chart3').delay(500).animate({
+						bottom: '-120%'
+					}, 1500, 'easeOutExpo');
+				}
+				if(index == '4'){
+					$('.section4').find('.chart4').fadeOut(2000);
+				}
+				if(index == '5'){
+					$('.section5').find('.chart5').delay(500).animate({
+						right: '-120%'
+					}, 1500, 'easeOutExpo');
+				}
+			} 
+		});
+	}); 
+	</script>
+</body>
+</html>

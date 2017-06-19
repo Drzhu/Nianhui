@@ -1,0 +1,135 @@
+*{margin:0; padding:0;font-family: "microsoft yahei";}
+html{-ms-text-size-adjust:100%; -webkit-text-size-adjust:100%; font-size:62.5%;}
+body{margin:0; font-size:1.4rem; line-height:1.5rem; color:#fff; height:100%; overflow-x:hidden; -webkit-overflow-scrolling:touch; -webkit-tap-highlight-color:transparent;}
+.personnel-info{
+	position:relative;
+	width:90%;
+	margin:1.5% auto;
+	padding:10px;
+	background:rgba(0,0,0,.35);
+	border:1px solid rgba(0,0,0,.1);
+	border-radius: 2px;
+}
+.answer,.answer-gender,.answer-sel{margin-bottom:50px; overflow:hidden; color:#fff;}
+.answer label,.answer-sel label{position:relative; display:inline-block; width:50%; padding-left:30px; box-sizing:border-box; line-height:5rem; float:left; font-size:2rem;font-family: "microsoft yahei";}
+.answer label:before{position:absolute; left:0; top:50%; display:block; width:20px; height:20px; border-radius: 50%; margin-top:-10px; background:#FFF; content:" "; border:1px solid #ccc;}
+.answer label.active:before{background:url(../img/checkradio.png) no-repeat; background-size:contain;}
+.answer-sel label:before{position:absolute; left:0; top:50%; display:block; width:18px; height:18px;  margin-top:-10px; background:#FFF; content:" "; border:1px solid #eee;}
+.answer-sel label.active:before{background:url(../img/checkbox.png) no-repeat; background-size:contain;}
+.answer input[type="radio"],.answer-gender input[type="radio"],.answer-sel input[type="checkbox"],.answer-pic input[type="radio"]{display:none;}
+.answer h3,.answer-gender h3,.answer-sel h3,.answer-pic h3{font-size:2.2rem; line-height:3rem;}
+.button{
+	display: block;
+    width: 100%;
+    height: 40px;
+    margin: 0 auto 10px;
+    background-color:#54AF54;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 2px;
+    font-size: 2rem;
+    color: #fff;
+    text-shadow: rgba(0,0,0,0.10) 1px 1px 1px;
+    transition: .1s;
+}
+.button:hover{background-color:#499849;}
+input[type="text"]{
+    height: 28px;
+    -webkit-appearance: none;
+    border: none;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: none;
+    color: #333;
+    padding:4px 10px;
+    width:80%;
+    margin:10px auto;
+    font-size:18px;
+}
+.answer-pic label{
+	position:relative;
+	display:inline-block;
+	width:100px;
+	height:140px;
+	border-radius:4px;
+	border:1px solid #ddd;
+	float:left;
+	margin:14px;
+}
+.answer-pic label.wangliang{
+	background:url(../img/wangliang.jpg) no-repeat center center;
+	background-size:cover;
+}
+.answer-pic label.mayun{
+	background:url(../img/mayun.jpg) no-repeat center center;
+	background-size:cover;
+}
+.answer-pic label.shiwei{
+	background:url(../img/shiwei.jpg) no-repeat center center;
+	background-size:cover;
+}
+.answer-pic label.yangweimin{
+	background:url(../img/yangweimin.jpg) no-repeat center center;
+	background-size:cover;
+}
+.answer-pic label.wangjl{
+	background:url(../img/wangjl.jpg) no-repeat center center;
+	background-size:cover;
+}
+
+.answer-pic label:before{position:absolute; right:0; top:10px; display:block; width:20px; height:20px; border-radius: 50%; margin-top:-10px; background:#FFF; content:" "; border:1px solid #ddd;}
+.answer-pic label.active:before{background:url(../img/checkbox.png) no-repeat; background-size:contain;}
+
+.answer-gender label{
+	position:relative;
+	display:inline-block;
+	width:90px;
+	height:90px;
+	background-size:cover;
+	border-radius:50%;
+	border:1px solid #ddd;
+	margin:5% 10% 0 10%;
+	float:left;
+}
+@media only screen and (max-width:320px ) {
+	.answer-gender label{
+		width:80px;
+		height:80px;
+	}
+}
+.answer-gender label.male{
+	background:url(../img/male.jpg) no-repeat 0 0;
+	
+}
+.answer-gender label.female{
+	background:url(../img/female.jpg) no-repeat 0 0;
+}
+.answer-gender label:before{
+	position: absolute;
+    right: 10px;
+    bottom: 5px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-top: -10px;
+    background: rgba(255,255,255,.3);
+    content: " ";
+    border:1px solid #ddd;
+}
+.answer-gender label.active:before{background:url(../img/checkbox.png) no-repeat; background-size:contain;}
+.nvshen{
+	display:inline-block;
+	border: 2px solid #e211e8;
+    line-height: 1.375;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    font-weight: 700;
+    color: #e211e8;
+    cursor: pointer;
+    background-color:rgba(255,255,255,.4);
+}
+
+
+
+

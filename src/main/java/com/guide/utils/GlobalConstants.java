@@ -1,0 +1,181 @@
+package com.guide.utils;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+
+public class GlobalConstants {
+	public static HashMap<String, Integer> ml = new HashMap<String, Integer>();
+	public static HashMap<String, Integer> mn = new HashMap<String, Integer>();
+	public static HashMap<String, Integer> wn = new HashMap<String, Integer>();
+	public static HashMap<String, Integer> wl = new HashMap<String, Integer>();
+	public static HashMap<String, Integer> wish = new HashMap<String, Integer>();
+
+	public static Date first_time = new Date();
+
+	public static Date getFirst() {
+
+		return first_time;
+	}
+
+	public static Date setFirst(Date date) {
+		first_time = date;
+		return first_time;
+	}
+
+	public static void setALL(HashMap<String, Integer> mls, HashMap<String, Integer> mns, HashMap<String, Integer> wls,
+			HashMap<String, Integer> wns, HashMap<String, Integer> wishs) {
+		ml = mls;
+		mn = mns;
+		wl = wls;
+		wn = wns;
+		wish = wishs;
+	}
+
+	public static void clear() {
+		ml.clear();
+		wn.clear();
+		wl.clear();
+		mn.clear();
+		wish.clear();
+	}
+
+	public static void init(String dateStr) {
+		first_time = StringToDate(dateStr);
+		wn.put("年度大会", -1);
+		wn.put("员工奉献奖", -1);
+		wn.put("微电影走秀", -1);
+		wn.put("微电影播映", -1);
+		wn.put("微电影颁奖", -1);
+		wn.put("晚宴走秀", -1);
+		wn.put("晚宴节目表演", -1);
+		wn.put("晚宴抽奖", -1);
+		wl.put("年度大会", 1);
+		wl.put("员工奉献奖", 1);
+		wl.put("微电影走秀", 1);
+		wl.put("微电影播映", 1);
+		wl.put("微电影颁奖", 1);
+		wl.put("晚宴走秀", 1);
+		wl.put("晚宴节目表演", 1);
+		wl.put("晚宴抽奖", 1);
+		ml.put("年度大会", 1);
+		ml.put("员工奉献奖", 1);
+		ml.put("微电影走秀", 1);
+		ml.put("微电影播映", 1);
+		ml.put("微电影颁奖", 1);
+		ml.put("晚宴走秀", 1);
+		ml.put("晚宴节目表演", 1);
+		ml.put("晚宴抽奖", 1);
+		mn.put("年度大会", -1);
+		mn.put("员工奉献奖", -1);
+		mn.put("微电影走秀", -1);
+		mn.put("微电影播映", -1);
+		mn.put("微电影颁奖", -1);
+		mn.put("晚宴走秀", -1);
+		mn.put("晚宴节目表演", -1);
+		mn.put("晚宴抽奖", -1);
+		wish.put("有钱暴富", 1);
+		wish.put("遇见那个ta", 1);
+		wish.put("健身减肥", 1);
+		wish.put("更美更帅", 1);
+		wish.put("升职加薪", 1);
+		wish.put("要宝宝", 1);
+		wish.put("世界和平", 1);
+		wish.put("嘿嘿嘿", 1);
+	}
+
+	public static HashMap<String, Integer> getWish() {
+		return wish;
+
+	}
+
+	public static HashMap<String, Integer> getML() {
+		return ml;
+
+	}
+
+	public static HashMap<String, Integer> getMN() {
+		return mn;
+
+	}
+
+	public static HashMap<String, Integer> getWL() {
+		return wl;
+
+	}
+
+	public static HashMap<String, Integer> getWN() {
+		return wn;
+
+	}
+
+	public static void setML(HashMap<String, Integer> maps) {
+
+		for (String i : maps.keySet()) {
+			if (ml.containsKey(i)) {
+				ml.put(i, ml.get(i) + 1);
+			} else {
+				ml.put(i, 1);
+			}
+		}
+	}
+
+	public static void setWish(HashMap<String, Integer> maps) {
+
+		for (String i : maps.keySet()) {
+			if (wish.containsKey(i)) {
+				wish.put(i, wish.get(i) + 1);
+			} else {
+				wish.put(i, 1);
+			}
+		}
+	}
+
+	public static void setMN(HashMap<String, Integer> maps) {
+
+		for (String i : maps.keySet()) {
+			if (mn.containsKey(i)) {
+				mn.put(i, mn.get(i) - 1);
+			} else {
+				mn.put(i, 1);
+			}
+		}
+	}
+
+	public static void setWL(HashMap<String, Integer> maps) {
+
+		for (String i : maps.keySet()) {
+			if (wl.containsKey(i)) {
+				wl.put(i, wl.get(i) + 1);
+			} else {
+				wl.put(i, 1);
+			}
+		}
+	}
+
+	public static void setWN(HashMap<String, Integer> maps) {
+
+		for (String i : maps.keySet()) {
+			if (wn.containsKey(i)) {
+				wn.put(i, wn.get(i) - 1);
+			} else {
+				wn.put(i, 1);
+			}
+		}
+	}
+	public static Date StringToDate(String dateStr) {
+		DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = null;
+		try {
+			date = sdf.parse(dateStr);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return date;
+	}
+	public static void main(String[] args) {
+		String ss = "2017";
+		System.err.println(StringToDate("2017-01-07 17:00:39"));
+	}
+}

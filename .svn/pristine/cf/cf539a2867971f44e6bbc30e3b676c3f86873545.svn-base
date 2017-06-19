@@ -1,0 +1,53 @@
+package com.guide.pojo;
+
+import java.io.Serializable;
+
+public class NianHui implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int male;
+	private String department;
+	private String createtime;
+	private String moviename;
+
+	public int getMale() {
+		return male;
+	}
+
+	public void setMale(int male) {
+		this.male = male;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	public String getCreatetime() {
+		return createtime;
+	}
+
+	public void setCreatetime(String createtime) {
+		this.createtime = createtime;
+	}
+
+	public String getMoviename() {
+		return moviename;
+	}
+
+	public void setMoviename(String moviename) {
+		this.moviename = moviename;
+	}
+
+	@Override
+	public String toString() {
+		return "NianHui [male=" + male + ", department=" + department + ", createtime=" + createtime + ", moviename="
+				+ moviename + "]";
+	}
+
+}

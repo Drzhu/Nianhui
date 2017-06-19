@@ -1,0 +1,314 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%--引入JSTL核心标签库 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<link rel="stylesheet" type="text/css" href="css/css.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
+<title>麦迪卫康2017年会</title>
+<style>
+.section {
+	text-align: center;
+	font: 40px "Microsoft Yahei";
+	color: #327AB7;
+}
+
+.section2 .chart2 {
+	position: relative;
+	left: -120%;
+}
+
+.section3 .chart3 {
+	position: relative;
+	bottom: -120%;
+}
+.section5 .chart5 {
+	position: relative;
+	right: -120%;
+}
+
+.section6 p {
+	position: absolute;
+}
+.section6 p img {
+	border-radius: 4px;
+}
+.section6 p.wangliang {
+	bottom: -120%;
+	left:15%;
+	text-align:center;
+}
+.section6 p.wangliang .laosiji-tit{
+	font-family:"华文行楷";
+	font-size:34px;
+	font-weight:bold;
+	display:block;
+	color:#f00;
+}
+.section6 p.shiwei,.section6 p.yangweimin,.section6 p.mayun,.section6 p.wangjl{
+	right: -120%;
+}
+.section6 .car{left:-120%;bottom:0;}
+.section .tip-info{
+	font-family:"华文行楷";
+	bottom:-80%;
+	right:42%;
+	font-size:46px;
+	font-weight:bold;
+	display:block;
+	color:#ff0000;
+	writing-mode: vertical-lr;
+}
+.section6 p.wangliang .data-tips{
+	position: absolute;
+    background-color: rgba(0,0,0,.3);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 25px;
+    color: #fff;
+    top: 0;
+    right: -60%;
+    display:none;
+}
+.section .huojian{
+	position:absolute;
+	bottom:-80%;
+	right:42%;
+}
+</style>
+</head>
+<body>
+	<div id="dowebok">
+		<div class="section section1">
+			<h3>答题数量变化趋势</h3>
+			<div class="chart1" id="line" style="width: 100%"></div>
+		</div>
+		<div class="section section2">
+		<h3>年会最期待的环节</h3>
+			<div class="chart2" id="bar" style="width: 100%" ></div>
+			
+		</div>
+		<div class="section section3">
+			<h3>2017年您最大的愿望是？</h3>
+			<div class="chart3" id="pie" style="width: 100%"></div>
+		</div>
+		<div class="section section4">
+			<h3>您心目中的公司女神是？</h3>
+			<div class="chart4" id="graph_w" style="width: 49%; float:left; border-right:2px solid #ddd"></div>
+			<div class="chart4_2" id="graph_m" style="width: 50%; float:left;"></div>
+		</div>
+		<div class="section section5">
+			<h3>约吗？老赵与您共进晚宴之后您的活动是？</h3>
+			<div class="chart5" id="world_cloud" style="width: 100%"></div>
+		</div>
+		<div class="section section6">
+			<h3>老司机带带我！您心目中的老司机是？</h3>
+			<p class="wangliang">
+				<img src="img/wangliang.gif" alt="王亮" />
+				<span class="laosiji-tit">老司机</span>
+				<span class="data-tips">投票占比：80%</span>
+			</p>
+			<p class="car">
+				<img src="img/car.png" width="200" alt="小汽车" />
+			</p>
+			<p class="shiwei">
+				<img src="img/shiwei.jpg" alt="施炜" />
+			</p>
+			<p class="yangweimin">
+				<img src="img/yangweimin.jpg" alt="杨为民" />
+			</p>
+			<p class="mayun">
+				<img src="img/mayun.jpg" alt="马云" />
+			</p>
+			<p class="wangjl">
+				<img src="img/wangjl.jpg" alt="王健林" />
+			</p>
+			<img class="huojian" src="img/huojian.png" width="100" alt="火箭"/>
+			<p class="tip-info">你咋不上天呢？</p>
+		</div>
+	</div>
+
+	<script src="js/jquery-3.1.0.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/jquery.fullPage.min.js"></script>
+	<script type="text/javascript" src="js/echarts.min.js"></script>
+	<script type="text/javascript" src="js/worldcloud.js"></script>
+	<script type="text/javascript" src="js/nianhui/all_option.js"></script>
+	<script>
+		$(function() {
+			var wHeight=$(window).height();
+			var h3Height=$(".section h3").height();
+			$(".section div[class^='chart']").css("height",wHeight-h3Height);
+			
+			var graphChart = echarts.init(document.getElementById('graph_w'));
+			var graphChart2 = echarts.init(document.getElementById('graph_m'));
+			$.getJSON('js/graph2.json',{}, function (json) {
+				var graph_option=graph_w(json);
+				console.log(graph_option);
+				<c:forEach var="item" items="${graph_w}" varStatus="status">
+				graph_option.series[0].data[${status.index}+1].name='${item.goddess}';
+				graph_option.title={
+					"text":"女生心中的女神",
+					"x":"4%"
+				};
+		    	</c:forEach>
+				graphChart.setOption(graph_option, true);
+					});
+			$.getJSON('js/graph2.json', function (json) {
+				var graph_option2=graph_m(json);
+				<c:forEach var="item" items="${graph_m}" varStatus="status">
+				graph_option2.series[0].data[${status.index}+1].name='${item.goddess}';
+				graph_option2.title={
+					"text":"男生心中的女神",
+					"x":"4%"
+				};
+		    	</c:forEach>
+				graphChart2.setOption(graph_option2, true);
+					});
+			var worldChart = echarts.init(document.getElementById('world_cloud'));
+			var barChart = echarts.init(document.getElementById('bar'));
+			var lineChart = echarts.init(document.getElementById('line'));
+			var pieChart = echarts.init(document.getElementById('pie'));
+			var world_option = world_cloud(eval('(' + '${cloud}' + ')'));
+			var bar_option = bar('${mn}'.split(","), '${ml}'.split(","),
+					'${wn}'.split(","), '${wl}'.split(","));
+			var line_option = line('${line_lenged}'.split(","), '${line}'
+					.split(","));
+			var pie_option = pie('${wish_lenged}'.split(","), eval('('
+					+ '${wish}' + ')'));
+			worldChart.setOption(world_option);
+			barChart.setOption(bar_option);
+			lineChart.setOption(line_option);
+			pieChart.setOption(pie_option);
+			var start = 10;
+			var end = 80;
+			setInterval(function() {
+				start += 10;
+				end += 10;
+				if (end > 100) {
+					line_option.dataZoom[0].end = 80;
+					line_option.dataZoom[0].start = 0;
+					end = 80;
+					start = 0;
+				} else {
+					line_option.dataZoom[0].start = start;
+					line_option.dataZoom[0].end = end;
+				}
+				lineChart.setOption(line_option, true);
+			}, 1000);
+			$('#dowebok').fullpage(
+					{
+						sectionsColor : [ '#eee', '#eee', '#eee','#eee', '#FFFFFF', '#FFFFFF' ],
+						continuousVertical : true,//循环演示
+						navigation : true,//导航
+
+						afterLoad : function(anchorLink, index) {
+							if (index == 2) {
+								$('.section2').find('.chart2').delay(500)
+										.animate({
+											left : '0'
+										}, 1500, 'easeOutExpo');
+							}
+							if (index == 3) {
+								$('.section3').find('.chart3').delay(500)
+										.animate({
+											bottom : '0'
+										}, 1500, 'easeOutExpo');
+							}
+							if (index == 4) {
+								$('.section4').find('.chart4').fadeIn(2000);
+							}
+							if (index == 5) {
+								$('.section5').find('.chart5').delay(500)
+										.animate({
+											right : '0'
+										}, 1500, 'easeOutExpo');
+							}
+							if (index == 6) {
+								$('.section6').find('.car').delay(30000)
+								.animate({
+									bottom : '0',
+									left : '15%'
+								}, 2000, 'easeOutExpo');
+								$('.section6').find('.wangliang').delay(35000)
+										.animate({
+											top : '20%',
+											left : '15%'
+										}, 800, 'easeOutExpo');
+								$('.section6').find('.shiwei').delay(38000)
+										.animate({
+											top : '25%',
+											right : '25%'
+										}, 1500, 'easeOutExpo');
+								$('.section6').find('.yangweimin').delay(38000)
+										.animate({
+											top:'25%',
+											right : '14%'
+										}, 1500, 'easeOutExpo');
+								$('.section6').find('.mayun').delay(38000)
+										.animate({
+											top:'55%',
+											right : '28%'
+										}, 1500, 'easeOutExpo');
+								$('.section6').find('.wangjl').delay(38000)
+										.animate({
+											top:'55%',
+											right : '15%'
+										}, 1500, 'easeOutExpo');
+								$('.section6').find('.tip-info').delay(40000)
+								.animate({
+									bottom:'25%',
+									right : '42%'
+								}, 1500, 'easeOutExpo');
+								$('.section6').find('.huojian').delay(39000)
+								.animate({
+									bottom:'700%',
+									right : '42%',
+								}, 20000, 'easeOutExpo');
+							}
+						},
+						onLeave : function(index, direction) {
+							if (index == '2') {
+								$('.section2').find('.chart2').delay(500)
+										.animate({
+											left : '-120%'
+										}, 1500, 'easeOutExpo');
+							}
+							if (index == '3') {
+								$('.section3').find('.chart3').delay(500)
+										.animate({
+											bottom : '-120%'
+										}, 1500, 'easeOutExpo');
+							}
+							if (index == '4') {
+								$('.section4').find('.chart4').fadeOut(2000);
+							}
+							if (index == '5') {
+								$('.section5').find('.chart5').delay(500)
+										.animate({
+											right : '-120%'
+										}, 1500, 'easeOutExpo');
+							}
+						}
+					});
+			
+			
+			$(".wangliang").mouseover(function(){//老司机数据显示
+				$(this).find(".data-tips").show();
+			});
+			$(".wangliang").mouseout(function(){
+				$(this).find(".data-tips").hide();
+			}); 
+		});
+	</script>
+</body>
+</html>

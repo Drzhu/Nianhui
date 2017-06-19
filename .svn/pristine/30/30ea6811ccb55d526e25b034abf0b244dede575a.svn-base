@@ -1,0 +1,104 @@
+package com.guide.utils;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
+
+public class GlobalConstants {
+	public static HashMap<String, Integer> ml = new HashMap<String, Integer>();
+	public static HashMap<String, Integer> mn= new HashMap<String, Integer>();
+	public static HashMap<String, Integer> wn = new HashMap<String, Integer>();
+	public static HashMap<String, Integer> wl = new HashMap<String, Integer>();
+	public static HashMap<String, Integer> wish = new HashMap<String, Integer>();
+	
+	
+	public static void setALL(HashMap<String, Integer> mls,HashMap<String, Integer> mns,HashMap<String, Integer> wls,HashMap<String, Integer> wns,HashMap<String, Integer> wishs) {
+		ml = mls;
+		mn = mns;
+		wl = wls;
+		wn = wns;
+		wish=wishs;
+	}
+	
+	public static void init() {
+		ml.clear();
+		wn.clear();
+		wl.clear();
+		mn.clear();
+		wish.clear();
+	}
+	public static HashMap<String, Integer> getWish() {
+		return wish;
+		
+	}
+	public static HashMap<String, Integer> getML() {
+		return ml;
+		
+	}
+	public static HashMap<String, Integer> getMN() {
+		return mn;
+		
+	}
+	public static HashMap<String, Integer> getWL() {
+		return wl;
+		
+	}
+	public static HashMap<String, Integer> getWN() {
+		return wn;
+		
+	}
+	
+	public static void setML(HashMap<String, Integer> maps) {
+			
+		for (String i : maps.keySet()) {
+			if (ml.containsKey(i)) {
+				ml.put(i, ml.get(i)+1);
+			}else{
+				ml.put(i, 0);
+			}
+		}
+	}
+	
+	public static void setWish(HashMap<String, Integer> maps) {
+		
+		for (String i : maps.keySet()) {
+			if (wish.containsKey(i)) {
+				wish.put(i, wish.get(i)+1);
+			}else{
+				wish.put(i, 0);
+			}
+		}
+	}
+	
+	public static void setMN(HashMap<String, Integer> maps) {
+		
+		for (String i : maps.keySet()) {
+			if (mn.containsKey(i)) {
+				mn.put(i, mn.get(i)-1);
+			}else{
+				mn.put(i, 0);
+			}
+		}
+	}
+	public static void setWL(HashMap<String, Integer> maps) {
+		
+		for (String i : maps.keySet()) {
+			if (wl.containsKey(i)) {
+				wl.put(i, wl.get(i)+1);
+			}else{
+				wl.put(i, 0);
+			}
+		}
+	}
+	public static void setWN(HashMap<String, Integer> maps) {
+		
+		for (String i : maps.keySet()) {
+			if (wn.containsKey(i)) {
+				wn.put(i, wn.get(i)-1);
+			}else{
+				wn.put(i, 0);
+			}
+		}
+	}
+
+}

@@ -1,0 +1,20 @@
+package com.guide.mapper;
+
+import java.util.List;
+
+import com.guide.pojo.NianHui;
+import com.guide.pojo.NianHuiData;
+
+public interface NianHuiMapper {
+
+	List<NianHui> query();
+
+	void insert_nianhui(NianHui nian);
+
+	List<NianHuiData> query_new();
+
+	List<NianHuiData> query_last();
+
+	List<NianHui> cloud();
+
+}

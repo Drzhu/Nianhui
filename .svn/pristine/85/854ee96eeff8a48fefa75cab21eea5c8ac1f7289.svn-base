@@ -1,0 +1,113 @@
+package com.guide.pojo;
+
+import java.io.Serializable;
+
+public class NianHui implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int male;
+	private String department;
+	private String createtime;
+	private String goddess;
+	private String zhao;
+	private String driver;
+	private String expect;
+	private String last_expect;
+	private String wish;
+	private int cloud_count;
+
+	
+	public int getCloud_count() {
+		return cloud_count;
+	}
+
+	public void setCloud_count(int cloud_count) {
+		this.cloud_count = cloud_count;
+	}
+
+	public int getMale() {
+		return male;
+	}
+
+	public void setMale(int male) {
+		this.male = male;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	public String getCreatetime() {
+		return createtime;
+	}
+
+	public void setCreatetime(String createtime) {
+		this.createtime = createtime;
+	}
+
+	public String getGoddess() {
+		return goddess;
+	}
+
+	public void setGoddess(String goddess) {
+		this.goddess = goddess;
+	}
+
+	public String getZhao() {
+		return zhao;
+	}
+
+	public void setZhao(String zhao) {
+		this.zhao = zhao;
+	}
+
+	public String getDriver() {
+		return driver;
+	}
+
+	public void setDriver(String driver) {
+		this.driver = driver;
+	}
+
+	public String getExpect() {
+		return expect;
+	}
+
+	public void setExpect(String expect) {
+		this.expect = expect;
+	}
+
+	public String getLast_expect() {
+		return last_expect;
+	}
+
+	public void setLast_expect(String last_expect) {
+		this.last_expect = last_expect;
+	}
+
+	public String getWish() {
+		return wish;
+	}
+
+	public void setWish(String wish) {
+		this.wish = wish;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "NianHui [male=" + male + ", department=" + department + ", createtime=" + createtime + ", goddess="
+				+ goddess + ", zhao=" + zhao + ", driver=" + driver + ", expect=" + expect + ", last_expect="
+				+ last_expect + ", wish=" + wish + ", cloud_count=" + cloud_count + "]";
+	}
+
+}

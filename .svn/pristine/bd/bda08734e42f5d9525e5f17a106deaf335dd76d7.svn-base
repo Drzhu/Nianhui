@@ -1,0 +1,33 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%--引入JSTL核心标签库 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+<meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+	<div id="bar" style="height: 900px"></div>
+	<div id="world_cloud" style="height: 900px"></div>
+	<div id="line" style="height: 900px"></div>
+	<div id="pie" style="height: 900px"></div>
+	<script type="text/javascript" src="js/echarts3.js"></script>
+	<script type="text/javascript" src="js/worldcloud.js"></script>
+	<script type="text/javascript" src="js/nianhui/all_option.js"></script>
+	<script type="text/javascript">
+		var worldChart = echarts.init(document.getElementById('world_cloud'));
+		var barChart = echarts.init(document.getElementById('bar'));
+		var lineChart = echarts.init(document.getElementById('line'));
+		var pieChart = echarts.init(document.getElementById('pie'));
+		var world_option = world_cloud(eval('(' +  '${cloud}' + ')'));
+		var bar_option = bar('${mn}'.split(","),'${ml}'.split(","),'${wn}'.split(","),'${wl}'.split(","));
+		var line_option = line(lineChart);
+		var pie_option = pie('${wish_lenged}'.split(","),eval('(' +  '${wish}' + ')'));
+		worldChart.setOption(world_option);
+		barChart.setOption(bar_option);
+		lineChart.setOption(line_option);
+		pieChart.setOption(pie_option);
+	</script>
+</body>
+</html>

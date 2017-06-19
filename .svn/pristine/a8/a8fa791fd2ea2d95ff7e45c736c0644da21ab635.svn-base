@@ -1,0 +1,45 @@
+package com.guide.controller;
+
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.guide.pojo.NianHui;
+import com.guide.service.NianHuiService;
+
+@Controller
+@RequestMapping("/")
+public class UserController {
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	SimpleDateFormat fmr = new SimpleDateFormat("MM-dd");
+	DecimalFormat df = new DecimalFormat();
+	// 处理业务逻辑的userService
+	@Resource(name = "nianHuiService")
+	private NianHuiService nianHuiService;
+	@SuppressWarnings("unused")
+	private Logger logger;
+
+	public UserController() {
+		this.logger = Logger.getLogger(UserController.class);
+	}
+
+	// 修改密码-get
+	@RequestMapping(value = "validate", method = RequestMethod.GET)
+	@ResponseBody
+	public String change_pass(HttpServletRequest request, @RequestParam("val") String val) {
+		System.err.println(val);
+		List<NianHui> list = nianHuiService.query();
+		return list.toString();
+	}
+
+}

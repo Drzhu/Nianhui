@@ -1,0 +1,229 @@
+/**
+ * 
+ */
+function world_cloud(cloud) {
+	var option = {
+		tooltip : {},
+		series : [ {
+			type : 'wordCloud',
+			gridSize : 2,
+			sizeRange : [ 50, 100 ],
+			rotationRange : [ 40, 90 ],
+			shape : 'circle',
+			textStyle : {
+				normal : {
+					color : function() {
+						return 'rgb('
+								+ [ Math.round(Math.random() * 160),
+										Math.round(Math.random() * 160),
+										Math.round(Math.random() * 160) ]
+										.join(',') + ')';
+					}
+				},
+				emphasis : {
+					shadowBlur : 10,
+					shadowColor : '#333'
+				}
+			},
+			data : cloud
+		} ]
+	};
+	return option;
+}
+function line(lenged, data_list) {
+	var option = {
+		backgroundColor : '#eee',
+		tooltip : {
+			trigger : 'axis'
+		},
+		grid : {
+			left : '2%',
+			right : '3%',
+			containLabel : false
+		},
+		legend : {
+			data : [ '提交人数' ],
+			left : 'center',
+			top : 'top',
+			bottom : 0,
+			textStyle : {
+				fontSize : 15,
+				fontWeight : 'bolder'
+			}
+		},
+		calculable : true,
+		xAxis : [ {
+			type : 'category',
+			boundaryGap : false,
+			axisLabel : {
+				textStyle : {
+					fontSize : 9,
+					fontWeight : 'bolder'
+				},
+				margin : 3
+			},
+			axisTick : {
+				show : false
+			},
+			data : lenged
+		} ],
+		yAxis : [ {
+			type : 'value',
+			axisLabel : {
+				formatter : '{value} ',
+				textStyle : {
+					fontSize : 8,
+					fontWeight : 'bolder'
+				},
+				margin : 1
+			},
+			axisTick : {
+				show : false
+			},
+		} ],
+		"dataZoom" : [ {
+			"show" : true,
+			"height" : 20,
+			"xAxisIndex" : [ 0 ],
+			bottom : 0,
+			"start" : 10,
+			"end" : 80,
+			handleIcon : 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+			handleSize : '120%',
+			handleStyle : {
+				color : "#00B0FC",
+			},
+			textStyle : {
+				color : "#000",
+				fontSize : 8,
+				fontWeight : 'bolder'
+			},
+			borderColor : "#BBAAE0",
+		} ],
+		series : [ {
+			name : '提交人数',
+			type : 'line',
+			symbolSize : 5,
+			lineStyle : {
+				normal : {
+					width : 3,
+				}
+			},
+			itemStyle : {
+				normal : {
+					color : '#D84C29'
+				}
+			},
+			data : data_list,
+		} ]
+	};
+	return option;
+}
+
+function bar(mn, ml, wn, wl) {
+	var itemStyle = {
+		normal : {},
+		emphasis : {
+			barBorderWidth : 1,
+			shadowBlur : 10,
+			shadowOffsetX : 0,
+			shadowOffsetY : 0,
+			shadowColor : 'rgba(0,0,0,0.5)'
+		}
+	};
+	var option = {
+		backgroundColor : '#eee',
+		backgroundColor : '#eee',
+		legend : {
+			data : [ '今年男生', '今年女生', '去年男生', '去年女生' ],
+			align : 'left',
+			left : 10
+		},
+		tooltip : {},
+		xAxis : {
+			data : [ '年度大会', '员工奉献奖', '微电影走秀', '微电影播映', '微电影颁奖', '晚宴走秀',
+					'晚宴节目表演', '晚宴抽奖' ],
+			silent : false,
+			axisLine : {
+				onZero : true
+			},
+			splitLine : {
+				show : false
+			},
+			splitArea : {
+				show : false
+			}
+		},
+		yAxis : {
+			inverse : true,
+			splitArea : {
+				show : false
+			}
+		},
+		grid : {
+			left : 100
+		},
+		series : [ {
+			name : '今年男生',
+			type : 'bar',
+			stack : 'one',
+			itemStyle : itemStyle,
+			data : mn
+		}, {
+			name : '今年女生',
+			type : 'bar',
+			stack : 'one',
+			itemStyle : itemStyle,
+			data : wn
+		}, {
+			name : '去年男生',
+			type : 'bar',
+			stack : 'one',
+			itemStyle : itemStyle,
+			data : ml
+		}, {
+			name : '去年女生',
+			type : 'bar',
+			stack : 'one',
+			itemStyle : itemStyle,
+			data : wl
+		} ]
+	};
+	return option;
+}
+function pie(lenged, data) {
+	var option = {
+		backgroundColor : '#eee',
+		tooltip : {
+			trigger : 'item',
+			formatter : "{a} <br/>{b} : {c} ({d}%)"
+		},
+		legend : {
+			x : 'left',
+			y : 'top',
+			orient : 'vertical',
+			textStyle : {
+				fontSize : 16,
+			},
+			data : lenged
+		},
+		calculable : true,
+		series : [ {
+			name : '最大的愿望',
+			type : 'pie',
+			radius : [ 50, 350 ],
+			center : [ '50%', '50%' ],
+			label : {
+				normal : {
+					textStyle : {
+						fontSize : 20,
+						fontWeight : 'bold'
+					}
+				}
+			},
+			roseType : 'area',
+			data : data
+		} ]
+	};
+	return option;
+}

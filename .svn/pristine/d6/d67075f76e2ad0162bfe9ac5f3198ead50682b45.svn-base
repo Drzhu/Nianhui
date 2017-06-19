@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guide.mapper.NianHuiMapper">
+	<select id="query" resultType="com.guide.pojo.NianHui"
+		parameterType="java.lang.String">
+	  <![CDATA[
+		select * from nianhui;
+		]]>
+	</select>
+	<select id="query_new" resultType="com.guide.pojo.NianHuiData"
+		parameterType="java.lang.String">
+	  <![CDATA[
+		select * from nianhui_data;
+		]]>
+	</select>
+	<select id="query_last" resultType="com.guide.pojo.NianHuiData"
+		parameterType="java.lang.String">
+	  <![CDATA[
+		select * from nianhui_data where level = '2016';
+		]]>
+	</select>
+	<select id="cloud" resultType="com.guide.pojo.NianHui"
+		parameterType="java.lang.String">
+	  <![CDATA[
+		select zhao,count(zhao) as cloud_count from nianhui group by zhao order by cloud_count desc;
+		]]>
+	</select>
+	<insert id="insert_nianhui" parameterType="com.guide.pojo.NianHui"
+		flushCache="true">
+		select * from nianhui;
+	</insert>
+</mapper>

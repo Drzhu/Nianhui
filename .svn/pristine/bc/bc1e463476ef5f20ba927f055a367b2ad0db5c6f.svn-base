@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guide.mapper.NianHuiMapper">
+	<select id="query" resultType="com.guide.pojo.NianHui"
+		parameterType="java.lang.String">
+	  <![CDATA[
+		select * from nianhui;
+		]]>
+	</select>
+	<select id="cloud" resultType="com.guide.pojo.NianHui"
+		parameterType="java.lang.String">
+	  <![CDATA[
+		select zhao,count(zhao) as cloud_count from nianhui group by zhao order by cloud_count desc;
+		]]>
+	</select>
+
+	<select id="line" resultType="com.guide.pojo.NianHui"
+		parameterType="java.lang.String">
+	  <![CDATA[
+		select createtime,count(*) as sub_count from nianhui where createtime > #{start_time} and createtime < #{end};
+		]]>
+	</select>
+	<select id="first_time" resultType="java.util.Date"
+		parameterType="java.lang.String">
+	  <![CDATA[
+		select createtime from nianhui order by createtime limit 1,1;
+		]]>
+	</select>
+	<select id="graph_w" resultType="com.guide.pojo.NianHui"
+		parameterType="java.lang.String">
+	  <![CDATA[
+		SELECT goddess ,COUNT(*) AS graph_w FROM nianhui WHERE male=0 GROUP BY goddess ORDER BY COUNT(goddess) DESC LIMIT 10
+		]]>
+	</select>
+	<select id="graph_m" resultType="com.guide.pojo.NianHui"
+		parameterType="java.lang.String">
+	  <![CDATA[
+		SELECT goddess ,COUNT(*) AS graph_m FROM nianhui WHERE male=1 GROUP BY goddess ORDER BY COUNT(goddess) DESC LIMIT 10
+		]]>
+	</select>
+	<insert id="insert_nianhui" parameterType="com.guide.pojo.NianHui"
+		flushCache="true">
+		insert into nianhui(male,goddess,zhao,driver)
+		values(#{male},#{goddess},#{zhao},#{driver});
+	</insert>
+</mapper>

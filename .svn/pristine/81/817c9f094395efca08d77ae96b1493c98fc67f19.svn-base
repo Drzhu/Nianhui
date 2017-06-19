@@ -1,0 +1,17 @@
+document.body.addEventListener('touchstart', function () { });
+$(function(e) {
+	
+	//单选按钮
+	$("input[type='radio']").click(function() {
+		$(this).parent("label").toggleClass("active");
+		$(this).parent("label").siblings().removeClass("active");
+	})
+	$("input[type='radio']:checked").parent("label").addClass("active");
+	
+	//复选框
+	$("input[type='checkbox']").click(function() {
+		$(this).parent("label").toggleClass("active");
+	})
+	$("input[type='radio']:checked").parent("label").addClass("active");
+	
+});
